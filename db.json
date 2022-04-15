@@ -1,0 +1,33 @@
+{
+  "recipe": [
+    {
+      "id": 2,
+      "foodName": "Burger",
+      "imgURL": "https://burgerking.vn/skin/frontend/bk2/default/images/promotion/thursday.png",
+      "alt": "Burger",
+      "description": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Deleniti aliquid suscipit reiciendis provident dolor odi"
+    },
+    {
+      "id": 3,
+      "foodName": "Rice chicken",
+      "imgURL": "https://mcdonalds.vn/uploads/2018/food/rice/mcspicy_chicken_rice.png",
+      "alt": "Rice chicken",
+      "description": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Deleniti aliquid suscipit reiciendis provident dolo"
+    },
+    {
+      "id": 4,
+      "foodName": "Egg fried rice",
+      "imgURL": "https://freshstore.pk/Content/Products/ProductImages/22164/Homemade-Egg-Fried-Rice-250-Gram1.jpg",
+      "alt": "Egg fried rice",
+      "description": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Deleniti aliquid suscipit reiciendis provident dolor odit totam saepe rerum nu"
+    },
+    {
+      "id": 5,
+      "foodName": "Salad",
+      "imgURL": "https://api.jaspas.com.vn//uploads/images/1597312823760GreenSalad.png",
+      "alt": "Salad",
+      "description": "abc"
+    }
+  ],
+  "shoppingList": []
+}

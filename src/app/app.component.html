@@ -1,0 +1,27 @@
+<!-- Begin:: Tool bar -->
+<nav class="navbar navbar-expand-lg p-0 navbar-dark">
+  <mat-toolbar color="primary">
+    <a mat-button class="navbar-brand" href="#">Recipe and shopping list</a>
+
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav mr-auto">
+        <li class="nav-item active">
+          <a class="nav-link" routerLink="/recipe">Recipe</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" routerLink="/shopping-list">Shoping list</a>
+        </li>
+      </ul>
+    </div>
+    <mat-icon type="button" matBadge="4" matBadgeColor="warn"
+      >shopping_cart</mat-icon
+    >
+  </mat-toolbar>
+</nav>
+<!-- End:: Tool bar -->
+
+<!-- Begin:: Routing -->
+<div class="container pt-5">
+  <router-outlet></router-outlet>
+</div>
+<!-- End:: Routing -->

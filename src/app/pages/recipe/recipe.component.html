@@ -1,0 +1,31 @@
+<div class="row">
+  <div class="col-6">
+    <app-recipe-list
+      [recipeList]="recipeList"
+      [isUpdateRecipe]="isUpdateRecipe"
+      (isAddRecipe)="handleAddRecipe($event)"
+      (showDetail)="handleShowDetailRecipe($event)"
+      (searchRecipe)="handleSearchRecipe($event)"
+    ></app-recipe-list>
+  </div>
+  <div class="col-6">
+    <div *ngIf="isShowRecipe">
+      <app-recipe-form
+        [editRecipe]="editDetailRecipe"
+        [isAddRecipe]="isAddRecipe"
+        (createRecipe)="handleCreateRecipe($event)"
+        (updateRecipe)="handleUpdateRecipe($event)"
+        (closeForm)="handleAddRecipe($event)"
+        (deleteRecipe)="handleDeleteRecipe($event)"
+      ></app-recipe-form>
+    </div>
+
+    <div *ngIf="isDetail">
+      <app-recipe-detail
+        [detailRecipe]="detailRecipe"
+        (editDetailRecipe)="handleEditRecipe($event)"
+      >
+      </app-recipe-detail>
+    </div>
+  </div>
+</div>

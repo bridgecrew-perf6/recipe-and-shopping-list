@@ -1,0 +1,138 @@
+<div class="d-flex justify-content-between align-items-center">
+  <h1 class="pt-3">
+    <b>{{ isAddRecipe ? "Create recipe" : "Edit recipe" }}</b>
+  </h1>
+</div>
+<form class="example-form pt-2" [formGroup]="addRecipeForm">
+  <!-- Begin:: Food name -->
+  <mat-form-field class="example-full-width mb-3" appearance="fill">
+    <mat-label>Food name</mat-label>
+
+    <input
+      matInput
+      placeholder="Ex. Pizza"
+      formControlName="foodName"
+      maxlength="50"
+    />
+    <mat-error *ngIf="foodName?.hasError('required')">
+      Food name is <strong>required</strong>
+    </mat-error>
+  </mat-form-field>
+  <!-- End:: Food name -->
+
+  <!-- Begin:: Food URL picture -->
+  <mat-form-field class="example-full-width mb-3" appearance="fill">
+    <mat-label>Image URL</mat-label>
+    <input matInput placeholder="Ex. https://" formControlName="imgURL" />
+    <mat-error *ngIf="imgURL?.hasError('required')">
+      Image URL is <strong>required</strong>
+    </mat-error>
+    <mat-error *ngIf="imgURL?.hasError('pattern')"
+      >Please enter a valid URL of image</mat-error
+    >
+  </mat-form-field>
+  <!-- End:: Food URL picture -->
+  <img
+    [src]="
+      imgURL?.hasError('pattern') ? '' : this.addRecipeForm.get('imgURL')?.value
+    "
+  />
+
+  <!-- Begin:: Food discription -->
+  <mat-form-field class="example-full-width mb-3" appearance="fill">
+    <mat-label>Description</mat-label>
+    <textarea
+      matInput
+      placeholder="Ex. It makes me feel..."
+      style="height: 60px"
+      formControlName="description"
+      maxlength="200"
+    ></textarea>
+  </mat-form-field>
+  <!-- End:: Food discription -->
+
+  <!-- Begin:: Add ingredient -->
+  <h3 class="d-flex align-items-center">
+    <b> Add ingredient</b>
+    <button
+      mat-icon-button
+      color="primary"
+      type="button"
+      (click)="handleAddIngredient()"
+    >
+      <!-- [disabled]="!this.addIngredientForm.valid" -->
+      <mat-icon>add</mat-icon>
+    </button>
+  </h3>
+  <div class="d-flex justify-content-between"></div>
+  <div class="list-ingredient">
+    <div
+      *ngFor="let item of ingredient; let i = index"
+      class="d-flex justify-content-between align-items-center"
+    >
+      <form [formGroup]="addIngredientForm">
+        <mat-form-field appearance="fill" class="ingredient-input">
+          <mat-label>Ingredient name</mat-label>
+          <input
+            matInput
+            placeholder="Ex. Carrot"
+            type="text"
+            [(ngModel)]="ingredient[i].ingredientName"
+          />
+        </mat-form-field>
+        <mat-form-field appearance="fill" class="number-width">
+          <mat-label>Quantity</mat-label>
+          <input
+            matInput
+            placeholder="Ex. 1"
+            type="number"
+            [(ngModel)]="ingredient[i].ingredientQuantity"
+          />
+        </mat-form-field>
+
+        <button
+          mat-icon-button
+          color="warn"
+          type="button"
+          class="mb-2"
+          (click)="handleDeleteIngredient(item.ingredientName)"
+        >
+          <mat-icon>clear</mat-icon>
+        </button>
+      </form>
+    </div>
+  </div>
+  <!-- End:: Add ingredient -->
+
+  <!-- Begin:: Action -->
+  <button
+    mat-raised-button
+    color="accent"
+    class="me-2"
+    type="button"
+    (click)="handleCancelRecipeForm()"
+  >
+    Cancel
+  </button>
+  <button
+    *ngIf="!isAddRecipe"
+    mat-raised-button
+    [class]="!isAddRecipe ? 'me-2' : ''"
+    color="warn"
+    type="button"
+    (click)="handleDeleteRecipe()"
+  >
+    Delete
+  </button>
+  <button
+    mat-raised-button
+    color="primary"
+    type="submit"
+    (click)="handleSubmitAddRecipe()"
+    [disabled]="!this.addRecipeForm.valid"
+  >
+    {{ isAddRecipe ? "Create" : "Save" }}
+  </button>
+
+  <!-- End:: Action -->
+</form>
