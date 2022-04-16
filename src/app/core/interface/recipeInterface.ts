@@ -4,4 +4,10 @@ export interface RecipeList {
   imgURL: string;
   alt: string;
   description: string;
+  ingredient: ListIngredient[];
+}
+
+interface ListIngredient {
+  name: string;
+  amount: number;
 }

@@ -6,10 +6,15 @@ import {
   Output,
   SimpleChanges,
 } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import {
+  FormArray,
+  FormBuilder,
+  FormControl,
+  FormGroup,
+  Validators,
+} from '@angular/forms';
 import { RecipeList } from 'src/app/core/interface/recipeInterface';
 import { MatDialog } from '@angular/material/dialog';
-
 @Component({
   selector: 'dialog-content',
   templateUrl: 'dialog-content.html',
@@ -31,9 +36,7 @@ export class RecipeFormComponent implements OnInit {
   @Output() deleteRecipe = new EventEmitter<number>();
 
   addRecipeForm!: FormGroup;
-  addIngredientForm!: FormGroup;
-  ingredient: { ingredientName: string; ingredientQuantity: number }[] = [];
-  check: { ingredientName: string; ingredientQuantity: number }[] = [];
+  // ingredient: { ingredientName: string; ingredientQuantity: number }[] = [];
 
   constructor(private fb: FormBuilder, public dialog: MatDialog) {
     this.createForm();
@@ -43,10 +46,26 @@ export class RecipeFormComponent implements OnInit {
 
   ngOnChanges(changes: SimpleChanges) {
     if (changes['editRecipe']) {
-      this.addRecipeForm.patchValue({ ...this.editRecipe });
+      this.addRecipeForm?.patchValue({
+        ...this.editRecipe,
+      });
+      if (
+        this.editRecipe?.ingredient?.length !== 0 &&
+        typeof this.editRecipe?.ingredient != 'undefined'
+      ) {
+        for (let ingredient of this.editRecipe?.ingredient) {
+          (<FormArray>this.addRecipeForm?.get('ingredient')).push(
+            new FormGroup({
+              name: new FormControl(ingredient.name),
+              amount: new FormControl(ingredient.amount),
+            })
+          );
+        }
+      }
     }
     if (changes['isAddRecipe'].currentValue) {
       this.addRecipeForm.reset();
+      this.resetIngredientForm();
     }
   }
   createForm() {
@@ -62,11 +81,7 @@ export class RecipeFormComponent implements OnInit {
       ],
       alt: [''],
       description: [''],
-    });
-
-    this.addIngredientForm = this.fb.group({
-      ingredientName: ['', Validators.required],
-      ingredientQuantity: ['', Validators.required],
+      ingredient: new FormArray([]),
     });
   }
 
@@ -76,15 +91,16 @@ export class RecipeFormComponent implements OnInit {
     });
     if (this.isAddRecipe) {
       this.createRecipe.emit(this.addRecipeForm.value);
-      this.addRecipeForm.reset();
     } else {
       this.updateRecipe.emit(this.addRecipeForm.value);
     }
+    this.addRecipeForm.reset();
+    this.resetIngredientForm();
   }
 
   handleCancelRecipeForm() {
     this.closeForm.emit(false);
-    this.addRecipeForm.reset();
+    this.addRecipeForm?.reset();
   }
 
   handleDeleteRecipe() {
@@ -97,15 +113,21 @@ export class RecipeFormComponent implements OnInit {
   }
 
   handleAddIngredient() {
-    this.ingredient.push({
-      ingredientName: '',
-      ingredientQuantity: 1,
-    });
-    this.addIngredientForm.reset();
+    (<FormArray>this.addRecipeForm.get('ingredient')).push(
+      new FormGroup({
+        name: new FormControl(null),
+        amount: new FormControl(null),
+      })
+    );
   }
 
-  handleDeleteIngredient(ingredientName: string) {
-    console.log(this.ingredient.values);
+  handleDeleteIngredient(ingredientName: any) {
+    const { name, value } = ingredientName.value;
+    (<FormArray>this.addRecipeForm.get('ingredient')).removeAt(
+      (<FormArray>this.addRecipeForm.get('ingredient')).value.findIndex(
+        (nameItem: any) => nameItem.name == name
+      )
+    );
   }
 
   get foodName() {
@@ -113,5 +135,14 @@ export class RecipeFormComponent implements OnInit {
   }
   get imgURL() {
     return this.addRecipeForm.get('imgURL');
+  }
+  getControls() {
+    return (<FormArray>this.addRecipeForm.get('ingredient'))?.controls;
+  }
+
+  private resetIngredientForm() {
+    while ((<FormArray>this.addRecipeForm?.get('ingredient')).length !== 0) {
+      (<FormArray>this.addRecipeForm?.get('ingredient')).removeAt(0);
+    }
   }
 }

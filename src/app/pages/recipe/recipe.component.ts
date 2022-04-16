@@ -71,6 +71,8 @@ export class RecipeComponent implements OnInit {
   }
 
   handleUpdateRecipe(args: RecipeList) {
+    this.isDetail = true;
+    this.isShowRecipe = false;
     this.isUpdateRecipe = true;
     this._recipeService.updateRecipe(args).subscribe(() => {
       this._snackBar.open('Update recipe success', 'Close', {
