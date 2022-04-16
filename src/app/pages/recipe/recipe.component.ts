@@ -35,6 +35,12 @@ export class RecipeComponent implements OnInit {
   fetchAllRecipe() {
     this._recipeService.getAllRecipe().subscribe((response: RecipeList[]) => {
       this.recipeList = response;
+      if (this.isUpdateRecipe) {
+        this.detailRecipe = response.filter((items: any) => {
+          return this.detailRecipe[0].id == items.id;
+        });
+        this.isUpdateRecipe = false;
+      }
     });
   }
 
@@ -79,7 +85,7 @@ export class RecipeComponent implements OnInit {
         duration: this.durationInSeconds * 1000,
       });
       this.fetchAllRecipe();
-      this.isUpdateRecipe = false;
+      // this.isUpdateRecipe = false;
     });
   }
 

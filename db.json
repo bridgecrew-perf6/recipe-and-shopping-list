@@ -8,11 +8,11 @@
       "description": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Deleniti aliquid suscipit reiciendis provident dolor odi",
       "ingredient": [
         {
-          "name": "dasd",
+          "name": "string",
           "amount": 1
         },
         {
-          "name": "dasd",
+          "name": "string test",
           "amount": 1
         }
       ]
