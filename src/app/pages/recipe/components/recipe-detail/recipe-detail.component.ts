@@ -8,7 +8,9 @@ import { RecipeList } from 'src/app/core/interface/recipeInterface';
 })
 export class RecipeDetailComponent implements OnInit {
   @Input() detailRecipe!: RecipeList[];
+
   @Output() editDetailRecipe = new EventEmitter<RecipeList>();
+
   constructor() {}
 
   ngOnInit(): void {}

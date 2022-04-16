@@ -8,12 +8,16 @@
       "description": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Deleniti aliquid suscipit reiciendis provident dolor odi",
       "ingredient": [
         {
-          "name": "string",
+          "name": "string12",
           "amount": 1
         },
         {
           "name": "string test",
           "amount": 1
+        },
+        {
+          "name": "tesst",
+          "amount": 42
         }
       ]
     },
@@ -75,7 +79,20 @@
       "imgURL": "https://burgerking.vn/skin/frontend/bk2/default/images/promotion/thursday.png",
       "alt": "asd",
       "description": "asdasd",
-      "ingredient": []
+      "ingredient": [
+        {
+          "name": "carot",
+          "amount": 1
+        },
+        {
+          "name": "string",
+          "amount": 2
+        },
+        {
+          "name": "string",
+          "amount": 2
+        }
+      ]
     },
     {
       "id": 8,
@@ -109,10 +126,6 @@
       "alt": "adads",
       "description": "asdasd",
       "ingredient": [
-        {
-          "name": "asdasd",
-          "amount": 1
-        },
         {
           "name": "asdasd",
           "amount": 12

@@ -36,7 +36,6 @@ export class RecipeFormComponent implements OnInit {
   @Output() deleteRecipe = new EventEmitter<number>();
 
   addRecipeForm!: FormGroup;
-  // ingredient: { ingredientName: string; ingredientQuantity: number }[] = [];
 
   constructor(private fb: FormBuilder, public dialog: MatDialog) {
     this.createForm();
@@ -68,6 +67,7 @@ export class RecipeFormComponent implements OnInit {
       this.resetIngredientForm();
     }
   }
+
   createForm() {
     this.addRecipeForm = this.fb.group({
       id: [''],
@@ -122,10 +122,10 @@ export class RecipeFormComponent implements OnInit {
   }
 
   handleDeleteIngredient(ingredientName: any) {
-    const { name, value } = ingredientName.value;
+    const { name } = ingredientName.value;
     (<FormArray>this.addRecipeForm.get('ingredient')).removeAt(
       (<FormArray>this.addRecipeForm.get('ingredient')).value.findIndex(
-        (nameItem: any) => nameItem.name == name
+        (nameItem: { name: string; amount: string }) => nameItem.name === name
       )
     );
   }
