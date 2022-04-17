@@ -1,0 +1,35 @@
+<div class="list-ingredient">
+  <div *ngFor="let item of listIngredient">
+    <mat-card class="example-card">
+      <img
+        mat-card-image
+        [src]="item.imgURL"
+        [alt]="item.alt"
+        width="50px"
+        height="220px"
+      />
+      <mat-card-content>
+        <h2>
+          {{ item.ingredientName }}
+        </h2>
+        <h2 class="text-success">
+          <strong> $40 </strong>
+        </h2>
+      </mat-card-content>
+      <mat-card-actions>
+        <button mat-stroked-button color="primary" class="more-list">
+          <mat-icon>add_shopping_cart</mat-icon>
+          Add to cart
+        </button>
+      </mat-card-actions>
+    </mat-card>
+  </div>
+</div>
+<button
+  mat-stroked-button
+  color="primary"
+  class="more-list"
+  (click)="handleMoreItem()"
+>
+  More
+</button>

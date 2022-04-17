@@ -2,11 +2,19 @@ import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
 import { RouterModule } from '@angular/router';
 import { ShoppingListComponent } from './shopping-list.component';
+import { MatCardModule } from '@angular/material/card';
+import { MatButtonModule } from '@angular/material/button';
+import { MatIconModule } from '@angular/material/icon';
+import { ShoppingListComponentsModule } from './components/shopping-list-component.module';
 
 @NgModule({
   declarations: [ShoppingListComponent],
   imports: [
     CommonModule,
+    MatCardModule,
+    MatButtonModule,
+    MatIconModule,
+    ShoppingListComponentsModule,
     RouterModule.forChild([
       {
         path: '',

@@ -150,5 +150,125 @@
       ]
     }
   ],
-  "shoppingList": []
+  "shoppingList": [
+    {
+      "id": 1,
+      "ingredientName": "Banana",
+      "imgURL": "https://www.dolenz.co.nz/uploads/cache/img/rc/UlbhALJo//uploads/media/5ad5653d97b82/fruit-heros-banana-new.png",
+      "alt": "Banana",
+      "price": 45
+    },
+    {
+      "id": 2,
+      "ingredientName": "Banana",
+      "imgURL": "https://burgerking.vn/skin/frontend/bk2/default/images/promotion/thursday.png",
+      "alt": "asasdasd",
+      "price": 45
+    },
+    {
+      "id": 3,
+      "ingredientName": "Banana",
+      "imgURL": "https://burgerking.vn/skin/frontend/bk2/default/images/promotion/thursday.png",
+      "alt": "asasdasd",
+      "price": 45
+    },
+    {
+      "id": 5,
+      "ingredientName": "Banana",
+      "imgURL": "https://burgerking.vn/skin/frontend/bk2/default/images/promotion/thursday.png",
+      "alt": "asasdasd",
+      "price": 45
+    },
+    {
+      "id": 6,
+      "ingredientName": "Banana",
+      "imgURL": "https://burgerking.vn/skin/frontend/bk2/default/images/promotion/thursday.png",
+      "alt": "asasdasd",
+      "price": 45
+    },
+    {
+      "id": 7,
+      "ingredientName": "Banana",
+      "imgURL": "https://burgerking.vn/skin/frontend/bk2/default/images/promotion/thursday.png",
+      "alt": "asasdasd",
+      "price": 45
+    },
+    {
+      "id": 8,
+      "ingredientName": "Banana",
+      "imgURL": "https://burgerking.vn/skin/frontend/bk2/default/images/promotion/thursday.png",
+      "alt": "asasdasd",
+      "price": 45
+    },
+    {
+      "id": 9,
+      "ingredientName": "Banana",
+      "imgURL": "https://burgerking.vn/skin/frontend/bk2/default/images/promotion/thursday.png",
+      "alt": "asasdasd",
+      "price": 45
+    },
+    {
+      "id": 10,
+      "ingredientName": "Banana",
+      "imgURL": "https://www.dolenz.co.nz/uploads/cache/img/rc/UlbhALJo//uploads/media/5ad5653d97b82/fruit-heros-banana-new.png",
+      "alt": "Banana",
+      "price": 45
+    },
+    {
+      "id": 11,
+      "ingredientName": "Banana",
+      "imgURL": "https://www.dolenz.co.nz/uploads/cache/img/rc/UlbhALJo//uploads/media/5ad5653d97b82/fruit-heros-banana-new.png",
+      "alt": "Banana",
+      "price": 45
+    },
+    {
+      "id": 12,
+      "ingredientName": "Banana",
+      "imgURL": "https://burgerking.vn/skin/frontend/bk2/default/images/promotion/thursday.png",
+      "alt": "asasdasd",
+      "price": 45
+    },
+    {
+      "id": 13,
+      "ingredientName": "Banana",
+      "imgURL": "https://burgerking.vn/skin/frontend/bk2/default/images/promotion/thursday.png",
+      "alt": "asasdasd",
+      "price": 45
+    },
+    {
+      "id": 14,
+      "ingredientName": "Banana",
+      "imgURL": "https://burgerking.vn/skin/frontend/bk2/default/images/promotion/thursday.png",
+      "alt": "asasdasd",
+      "price": 45
+    },
+    {
+      "id": 15,
+      "ingredientName": "Banana",
+      "imgURL": "https://burgerking.vn/skin/frontend/bk2/default/images/promotion/thursday.png",
+      "alt": "asasdasd",
+      "price": 45
+    },
+    {
+      "id": 16,
+      "ingredientName": "Banana",
+      "imgURL": "https://burgerking.vn/skin/frontend/bk2/default/images/promotion/thursday.png",
+      "alt": "asasdasd",
+      "price": 45
+    },
+    {
+      "id": 17,
+      "ingredientName": "Banana",
+      "imgURL": "https://burgerking.vn/skin/frontend/bk2/default/images/promotion/thursday.png",
+      "alt": "asasdasd",
+      "price": 45
+    },
+    {
+      "id": 18,
+      "ingredientName": "Banana",
+      "imgURL": "https://burgerking.vn/skin/frontend/bk2/default/images/promotion/thursday.png",
+      "alt": "asasdasd",
+      "price": 45
+    }
+  ]
 }

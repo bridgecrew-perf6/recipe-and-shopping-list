@@ -1,1 +1,7 @@
-<p>shopping-list works!</p>
+<app-filter-ingredient (searchIngredient)="handleSearchIngredient($event)">
+</app-filter-ingredient>
+
+<app-list-ingredient
+  [listIngredient]="listIngredient"
+  (addMoreItem)="handleMoreItem($event)"
+></app-list-ingredient>

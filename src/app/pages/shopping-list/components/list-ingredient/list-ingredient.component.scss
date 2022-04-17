@@ -1,0 +1,10 @@
+.list-ingredient {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 0.5fr));
+  gap: 1rem;
+}
+
+.more-list {
+  margin-top: 2rem;
+  width: 100% !important;
+}

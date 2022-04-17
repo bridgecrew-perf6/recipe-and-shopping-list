@@ -1,0 +1,14 @@
+<div class="d-flex align-items-center">
+  <h1 class="me-2">Searching:</h1>
+  <mat-form-field appearance="outline" class="w-25">
+    <mat-label>Ingredient</mat-label>
+    <input
+      matInput
+      placeholder="Placeholder"
+      name="userQuestion"
+      [(ngModel)]="ingredientSearch"
+      id="userQuestions"
+      (ngModelChange)="this.ingredientListUpdate.next($event)"
+    />
+  </mat-form-field>
+</div>
