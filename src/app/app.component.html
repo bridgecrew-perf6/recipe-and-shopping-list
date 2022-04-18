@@ -12,13 +12,15 @@
         >
       </div>
     </div>
-
-    <mat-icon type="button" matBadge="4" matBadgeColor="warn"
+    <mat-icon
+      type="button"
+      [matBadge]="allIngredientCart"
+      matBadgeColor="warn"
+      routerLink="/cart-check"
       >shopping_cart</mat-icon
     >
   </mat-toolbar>
 </nav>
-
 <!-- End:: Tool bar -->
 
 <!-- Begin:: Routing -->

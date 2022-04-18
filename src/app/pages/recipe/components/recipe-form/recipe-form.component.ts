@@ -115,8 +115,8 @@ export class RecipeFormComponent implements OnInit {
   handleAddIngredient() {
     (<FormArray>this.addRecipeForm.get('ingredient')).push(
       new FormGroup({
-        name: new FormControl(null),
-        amount: new FormControl(null),
+        name: new FormControl(null, Validators.required),
+        amount: new FormControl(null, Validators.required),
       })
     );
   }
@@ -138,6 +138,9 @@ export class RecipeFormComponent implements OnInit {
   }
   getControls() {
     return (<FormArray>this.addRecipeForm.get('ingredient'))?.controls;
+  }
+  get allRecipe() {
+    return (<FormArray>this.addRecipeForm.get('ingredient'))?.value;
   }
 
   private resetIngredientForm() {

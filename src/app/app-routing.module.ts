@@ -14,8 +14,14 @@ const routes: Routes = [
         (m) => m.ShoppingListModule
       ),
   },
+  {
+    path: 'cart-check',
+    loadChildren: () =>
+      import('./pages/cart-check/cart-check.module').then(
+        (m) => m.CartCheckModule
+      ),
+  },
   { path: '', redirectTo: 'recipe', pathMatch: 'prefix' },
-  // { path: '**', redirectTo: 'error/404' },
 ];
 
 @NgModule({
