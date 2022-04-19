@@ -1,12 +1,13 @@
 import { Injectable } from '@angular/core';
 import { State, Action, StateContext, Selector } from '@ngxs/store';
-import { Ingredient } from 'src/app/core/model/ingredient.model';
+import { Ingredient } from 'src/app/core/model/cart.model';
 import {
   AddIngredient,
   RemoveIngredient,
   AddAmountIngredient,
   SubtractAmountIngredient,
   ChangeInputAmount,
+  ReloadState,
 } from '../actions/ingredient.actions';
 export class IngredientStateModel {
   ingredients!: any[];
@@ -22,6 +23,13 @@ export class IngredientStateModel {
 })
 @Injectable()
 export class IngredientState {
+  set allIngredientLocal(arg: any[]) {
+    localStorage.setItem('ingredient', JSON.stringify(arg));
+  }
+  get allIngredientLocal(): any[] {
+    return JSON.parse(localStorage.getItem('ingredient') ?? 'null');
+  }
+
   @Selector()
   static getIngredients(state: IngredientStateModel) {
     return state.ingredients;
@@ -40,20 +48,22 @@ export class IngredientState {
     const state = getState();
     let isHaveId: boolean = false;
     if (state.ingredients.length === 0) {
-      patchState({
-        ingredients: [...state.ingredients, payload],
-        totalPrice: [...state.ingredients, payload].reduce(
-          (total: number, currentVal: any) => {
-            return total + currentVal.price * currentVal.amount;
-          },
-          0
-        ),
-      });
+      (this.allIngredientLocal = [...state.ingredients, payload]),
+        patchState({
+          ingredients: [...state.ingredients, payload],
+          totalPrice: [...state.ingredients, payload].reduce(
+            (total: number, currentVal: any) => {
+              return total + currentVal.price * currentVal.amount;
+            },
+            0
+          ),
+        });
     } else {
       for (let item of state.ingredients) {
         if (item.id == payload.id) {
           item.amount += 1;
           isHaveId = true;
+          this.allIngredientLocal = state.ingredients;
           patchState({
             totalPrice: state.ingredients.reduce(
               (total: number, currentVal: any) => {
@@ -65,6 +75,7 @@ export class IngredientState {
         }
       }
       if (!isHaveId) {
+        this.allIngredientLocal = [...state.ingredients, payload];
         patchState({
           ingredients: [...state.ingredients, payload],
           totalPrice: [...state.ingredients, payload].reduce(
@@ -83,7 +94,6 @@ export class IngredientState {
     { getState, patchState }: StateContext<IngredientStateModel>,
     { payload }: AddIngredient
   ) {
-    const state = getState();
     patchState({
       ingredients: getState().ingredients.filter(
         (item: any) => item.id !== payload
@@ -94,6 +104,9 @@ export class IngredientState {
           return total + currentVal.price * currentVal.amount;
         }, 0),
     });
+    this.allIngredientLocal = getState().ingredients.filter(
+      (item: any) => item.id !== payload
+    );
   }
 
   @Action(AddAmountIngredient)
@@ -115,6 +128,7 @@ export class IngredientState {
         0
       ),
     });
+    this.allIngredientLocal = ingredients;
   }
 
   @Action(SubtractAmountIngredient)
@@ -136,6 +150,7 @@ export class IngredientState {
         0
       ),
     });
+    this.allIngredientLocal = ingredients;
   }
 
   @Action(ChangeInputAmount)
@@ -156,6 +171,20 @@ export class IngredientState {
         },
         0
       ),
+    });
+    this.allIngredientLocal = ingredients;
+  }
+
+  @Action(ReloadState)
+  reloadState(
+    { getState, patchState }: StateContext<IngredientStateModel>,
+    { payload }: any
+  ) {
+    patchState({
+      ingredients: payload,
+      totalPrice: payload?.reduce((total: number, currentVal: any) => {
+        return total + currentVal.price * currentVal.amount;
+      }, 0),
     });
   }
 }

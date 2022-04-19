@@ -1,0 +1,69 @@
+<div mat-dialog-content>
+  <h2>{{ this.data.isCreate ? "Add more ingredient" : "Edit ingredient" }}</h2>
+  <form [formGroup]="addItemShoppingList">
+    <mat-form-field class="w-100 mb-2" appearance="outline">
+      <mat-label>Ingredient name</mat-label>
+      <input matInput placeholder="" formControlName="ingredientName" />
+      <mat-error *ngIf="ingredientName?.hasError('required')">
+        Ingredient name is <strong>required</strong>
+      </mat-error>
+    </mat-form-field>
+
+    <mat-form-field class="w-100 mb-2" appearance="outline">
+      <mat-label>Image URL</mat-label>
+      <input matInput placeholder="" formControlName="imgURL" />
+      <mat-error *ngIf="imgURL?.hasError('required')">
+        Image URL is <strong>required</strong>
+      </mat-error>
+      <mat-error *ngIf="imgURL?.hasError('pattern')"
+        >Please enter a valid URL of image</mat-error
+      >
+    </mat-form-field>
+    <img
+      [src]="
+        imgURL?.hasError('pattern')
+          ? ''
+          : this.addItemShoppingList.get('imgURL')?.value
+      "
+      width="20%"
+    />
+
+    <mat-form-field class="w-100 mb-2" appearance="outline">
+      <mat-label>Price</mat-label>
+      <input matInput type="number" placeholder="" formControlName="price" />
+      <mat-error *ngIf="price?.hasError('required')">
+        Price is <strong>required</strong>
+      </mat-error>
+    </mat-form-field>
+  </form>
+</div>
+<div mat-dialog-actions>
+  <button mat-button mat-dialog-close>Cancel</button>
+  <button
+    mat-button
+    color="warn"
+    [mat-dialog-close]="{
+      payload: this.addItemShoppingList.get('id')?.value,
+      isDelete: true
+    }"
+    *ngIf="!this.data.isCreate"
+  >
+    Delete
+  </button>
+  <button
+    mat-button
+    color="primary"
+    [mat-dialog-close]="
+      this.data.isCreate
+        ? this.addItemShoppingList.value
+        : {
+            payload: this.addItemShoppingList.value,
+            isDelete: false
+          }
+    "
+    [disabled]="!this.addItemShoppingList.valid"
+    cdkFocusInitial
+  >
+    {{ this.data.isCreate ? "Create" : "Save" }}
+  </button>
+</div>

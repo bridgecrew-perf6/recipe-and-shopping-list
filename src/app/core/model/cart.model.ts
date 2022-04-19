@@ -1,6 +1,8 @@
 export interface Ingredient {
   id: number;
   ingredientName: string;
-  amount: number;
+  imgURL: string;
+  alt: string;
   price: number;
+  amount?: number;
 }

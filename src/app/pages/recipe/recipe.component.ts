@@ -2,8 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { RecipeService } from 'src/app/core/services/recipe.service';
 import { fromEvent, Subject } from 'rxjs';
 import { debounceTime, distinctUntilChanged, map } from 'rxjs/operators';
-import { RecipeList } from 'src/app/core/interface/recipeInterface';
 import { MatSnackBar } from '@angular/material/snack-bar';
+import { RecipeList } from 'src/app/core/model/recipe.model';
 
 @Component({
   selector: 'app-recipe',
@@ -23,7 +23,7 @@ export class RecipeComponent implements OnInit {
   constructor(
     private _recipeService: RecipeService,
     private _snackBar: MatSnackBar
-  ) {}
+  ) { }
 
   ngOnInit() {
     this.fetchAllRecipe();

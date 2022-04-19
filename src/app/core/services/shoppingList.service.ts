@@ -8,7 +8,6 @@ import { BehaviorSubject, Observable, of, throwError } from 'rxjs';
 import { catchError, switchMap } from 'rxjs/operators';
 import { Router } from '@angular/router';
 import { environment } from 'src/environments/environment';
-import { RecipeList } from '../interface/recipeInterface';
 @Injectable({
   providedIn: 'root',
 })
@@ -20,7 +19,7 @@ export class ShoppingListService {
     }),
   };
 
-  constructor(private httpClient: HttpClient, private router: Router) {}
+  constructor(private httpClient: HttpClient, private router: Router) { }
 
   /**
    * List all recipe
@@ -41,6 +40,39 @@ export class ShoppingListService {
     const url = `${environment.apiServer}/shoppingList?q=${ingredientName}&&_limit=${limit}`;
     return this.httpClient
       .get<any>(url, this.httpOptions)
+      .pipe(catchError(this.handleError));
+  }
+
+  /**
+ * List all recipe
+ * @returns
+ */
+  public createIngredientShoppingList(arg: any) {
+    const url = `${environment.apiServer}/shoppingList`;
+    return this.httpClient
+      .post<any>(url, arg, this.httpOptions)
+      .pipe(catchError(this.handleError));
+  }
+
+  /**
+* List all recipe
+* @returns
+*/
+  public updateIngredientShoppingList(arg: any) {
+    const url = `${environment.apiServer}/shoppingList/${arg.id}`;
+    return this.httpClient
+      .put<any>(url, arg, this.httpOptions)
+      .pipe(catchError(this.handleError));
+  }
+
+  /**
+* List all recipe
+* @returns
+*/
+  public deleteIngredientShoppingList(id: number) {
+    const url = `${environment.apiServer}/shoppingList/${id}`;
+    return this.httpClient
+      .delete<any>(url, this.httpOptions)
       .pipe(catchError(this.handleError));
   }
 

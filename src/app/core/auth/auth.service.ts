@@ -19,14 +19,7 @@ export class AuthService {
     }),
   };
 
-  constructor(private httpClient: HttpClient, private router: Router) {}
-
-  public getUserBehaviorLog() {
-    const url = `${environment.apiServer}/recipe`;
-    return this.httpClient
-      .get<any>(url, this.httpOptions)
-      .pipe(catchError(this.handleError));
-  }
+  constructor(private httpClient: HttpClient, private router: Router) { }
 
   private handleError(error: HttpErrorResponse): any {
     return throwError(error.error);

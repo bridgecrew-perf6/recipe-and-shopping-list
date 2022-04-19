@@ -1,5 +1,5 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
-import { RecipeList } from 'src/app/core/interface/recipeInterface';
+import { RecipeList } from 'src/app/core/model/recipe.model';
 
 @Component({
   selector: 'app-recipe-detail',
@@ -11,9 +11,9 @@ export class RecipeDetailComponent implements OnInit {
 
   @Output() editDetailRecipe = new EventEmitter<RecipeList>();
 
-  constructor() {}
+  constructor() { }
 
-  ngOnInit(): void {}
+  ngOnInit(): void { }
 
   handleEditRecipe() {
     this.editDetailRecipe.emit(this.detailRecipe[0]);

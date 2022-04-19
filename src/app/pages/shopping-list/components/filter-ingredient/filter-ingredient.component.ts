@@ -1,5 +1,12 @@
-import { Component, EventEmitter, OnInit, Output } from '@angular/core';
+import { Component, EventEmitter, Inject, OnInit, Output } from '@angular/core';
 import { debounceTime, distinctUntilChanged, Subject } from 'rxjs';
+import {
+  MatDialog,
+  MatDialogRef,
+  MAT_DIALOG_DATA,
+} from '@angular/material/dialog';
+import { FormDetailIngredientComponent } from '../form-detail-ingredient/form-detail-ingredient.component';
+import { ShoppingList } from 'src/app/core/model/shoppingList.model';
 
 @Component({
   selector: 'app-filter-ingredient',
@@ -8,11 +15,12 @@ import { debounceTime, distinctUntilChanged, Subject } from 'rxjs';
 })
 export class FilterIngredientComponent implements OnInit {
   @Output() searchIngredient = new EventEmitter<string>();
+  @Output() createIngredient = new EventEmitter<ShoppingList>();
 
   ingredientListUpdate = new Subject<string>();
   ingredientSearch: string = '';
 
-  constructor() {
+  constructor(public dialog: MatDialog) {
     this.ingredientListUpdate
       .pipe(debounceTime(400), distinctUntilChanged())
       .subscribe((value: string) => {
@@ -25,4 +33,17 @@ export class FilterIngredientComponent implements OnInit {
   }
 
   ngOnInit(): void {}
+
+  handleAddItemShoppingList() {
+    const dialogRef = this.dialog.open(FormDetailIngredientComponent, {
+      width: '350px',
+      data: { isCreate: true },
+    });
+
+    dialogRef.afterClosed().subscribe((result) => {
+      if (result.id === '') {
+        this.createIngredient.emit(result);
+      }
+    });
+  }
 }

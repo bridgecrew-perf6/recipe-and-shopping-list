@@ -1,7 +1,12 @@
-<app-filter-ingredient (searchIngredient)="handleSearchIngredient($event)">
+<app-filter-ingredient
+  (searchIngredient)="handleSearchIngredient($event)"
+  (createIngredient)="handleCreateIngredient($event)"
+>
 </app-filter-ingredient>
 
 <app-list-ingredient
   [listIngredient]="listIngredient"
   (addMoreItem)="handleMoreItem($event)"
+  (deleteIngredient)="handleDeleteIngredient($event)"
+  (updateIngredient)="handleUpdateIngredient($event)"
 ></app-list-ingredient>

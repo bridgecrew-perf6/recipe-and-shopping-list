@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { ShoppingList } from 'src/app/core/model/shoppingList.model';
 import { ShoppingListService } from 'src/app/core/services/shoppingList.service';
 
 @Component({
@@ -9,7 +10,7 @@ import { ShoppingListService } from 'src/app/core/services/shoppingList.service'
 export class ShoppingListComponent implements OnInit {
   constructor(private _shoppingListService: ShoppingListService) {}
 
-  listIngredient!: any[];
+  listIngredient!: ShoppingList[];
   limitNumber: number = 15;
 
   ngOnInit(): void {
@@ -19,7 +20,7 @@ export class ShoppingListComponent implements OnInit {
   fetchDataIngredient() {
     this._shoppingListService
       .getAllShoppingList(this.limitNumber)
-      .subscribe((data) => {
+      .subscribe((data: ShoppingList[]) => {
         this.listIngredient = data;
       });
   }
@@ -32,8 +33,25 @@ export class ShoppingListComponent implements OnInit {
   handleSearchIngredient(ingredientName: string) {
     this._shoppingListService
       .searchAllShoppingList(this.limitNumber, ingredientName)
-      .subscribe((data) => {
+      .subscribe((data: ShoppingList[]) => {
         this.listIngredient = data;
       });
+  }
+
+  handleCreateIngredient(ingredient: ShoppingList) {
+    this._shoppingListService
+      .createIngredientShoppingList(ingredient)
+      .subscribe(() => this.fetchDataIngredient());
+  }
+
+  handleDeleteIngredient(id: number) {
+    this._shoppingListService
+      .deleteIngredientShoppingList(id)
+      .subscribe(() => this.fetchDataIngredient());
+  }
+  handleUpdateIngredient(ingredient: ShoppingList) {
+    this._shoppingListService
+      .updateIngredientShoppingList(ingredient)
+      .subscribe(() => this.fetchDataIngredient());
   }
 }

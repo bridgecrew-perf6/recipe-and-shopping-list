@@ -1,5 +1,3 @@
-import { Ingredient } from 'src/app/core/model/ingredient.model';
-
 export class AddIngredient {
   static readonly type = '[ingredient] Add';
   constructor(public payload: any) {}
@@ -22,5 +20,10 @@ export class SubtractAmountIngredient {
 
 export class ChangeInputAmount {
   static readonly type = '[ingredient] changeInput';
+  constructor(public payload: any) {}
+}
+
+export class ReloadState {
+  static readonly type = '[ingredient] reloadState';
   constructor(public payload: any) {}
 }

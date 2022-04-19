@@ -13,13 +13,13 @@ import {
   FormGroup,
   Validators,
 } from '@angular/forms';
-import { RecipeList } from 'src/app/core/interface/recipeInterface';
 import { MatDialog } from '@angular/material/dialog';
+import { RecipeList } from 'src/app/core/model/recipe.model';
 @Component({
   selector: 'dialog-content',
   templateUrl: 'dialog-content.html',
 })
-export class DialogContent {}
+export class DialogContent { }
 
 @Component({
   selector: 'app-recipe-form',
@@ -41,7 +41,7 @@ export class RecipeFormComponent implements OnInit {
     this.createForm();
   }
 
-  ngOnInit(): void {}
+  ngOnInit(): void { }
 
   ngOnChanges(changes: SimpleChanges) {
     if (changes['editRecipe']) {

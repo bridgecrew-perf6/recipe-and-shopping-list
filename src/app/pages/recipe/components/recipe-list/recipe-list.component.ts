@@ -7,7 +7,7 @@ import {
   SimpleChanges,
 } from '@angular/core';
 import { debounceTime, distinctUntilChanged, Subject } from 'rxjs';
-import { RecipeList } from 'src/app/core/interface/recipeInterface';
+import { RecipeList } from 'src/app/core/model/recipe.model';
 
 @Component({
   selector: 'app-recipe-list',
@@ -38,7 +38,7 @@ export class RecipeListComponent implements OnInit {
       });
   }
 
-  ngOnInit(): void {}
+  ngOnInit(): void { }
   ngOnChanges(changes: SimpleChanges) {
     this.recipeListData = this.recipeList;
     if (changes['isUpdateRecipe']?.currentValue) {

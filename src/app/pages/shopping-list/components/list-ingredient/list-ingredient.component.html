@@ -11,10 +11,13 @@
       <mat-card-content>
         <h2 #ingredientName>
           {{ item.ingredientName }}
+          <button mat-icon-button (click)="openDialog(item)">
+            <mat-icon>more_vert</mat-icon>
+          </button>
         </h2>
         <h2 class="text-success">
           <strong>
-            $ <span #ingredientPrice>{{ item.price }}</span>
+            <span #ingredientPrice>{{ item.price | currency }}</span>
           </strong>
         </h2>
       </mat-card-content>

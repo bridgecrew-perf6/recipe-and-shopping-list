@@ -8,7 +8,7 @@ import { BehaviorSubject, Observable, of, throwError } from 'rxjs';
 import { catchError, switchMap } from 'rxjs/operators';
 import { Router } from '@angular/router';
 import { environment } from 'src/environments/environment';
-import { RecipeList } from '../interface/recipeInterface';
+import { RecipeList } from '../model/recipe.model';
 @Injectable({
   providedIn: 'root',
 })
@@ -20,7 +20,7 @@ export class RecipeService {
     }),
   };
 
-  constructor(private httpClient: HttpClient, private router: Router) {}
+  constructor(private httpClient: HttpClient, private router: Router) { }
 
   /**
    * List all recipe

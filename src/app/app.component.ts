@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
-import { Select } from '@ngxs/store';
+import { Select, Store } from '@ngxs/store';
 import { Observable } from 'rxjs';
+import { ReloadState } from './shared/actions/ingredient.actions';
 import { IngredientState } from './shared/states/ingredient.state';
 @Component({
   selector: 'app-root',
@@ -11,9 +12,18 @@ export class AppComponent {
   allIngredientCart!: number;
   isUpdateCart: boolean = false;
   @Select(IngredientState.getIngredients) ingredients$!: Observable<any>;
-  constructor() {
+  constructor(
+    private _ingredientState: IngredientState,
+    private _store: Store
+  ) {
     this.ingredients$.subscribe((data: any[]) => {
-      this.allIngredientCart = data.length;
+      this.allIngredientCart = data?.length;
     });
+    if (performance.navigation.type == performance.navigation.TYPE_RELOAD) {
+      this.allIngredientCart = this._ingredientState.allIngredientLocal?.length;
+      this._store.dispatch(
+        new ReloadState(this._ingredientState.allIngredientLocal)
+      );
+    }
   }
 }

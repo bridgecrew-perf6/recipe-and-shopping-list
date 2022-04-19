@@ -9,9 +9,10 @@ import { MatDialogModule } from '@angular/material/dialog';
 import { ListIngredientComponent } from './list-ingredient/list-ingredient.component';
 import { MatCardModule } from '@angular/material/card';
 import { FilterIngredientComponent } from './filter-ingredient/filter-ingredient.component';
+import { FormDetailIngredientComponent } from './form-detail-ingredient/form-detail-ingredient.component';
 
 @NgModule({
-  declarations: [ListIngredientComponent, FilterIngredientComponent],
+  declarations: [ListIngredientComponent, FilterIngredientComponent, FormDetailIngredientComponent],
   imports: [
     FormsModule,
     ReactiveFormsModule,
@@ -25,4 +26,4 @@ import { FilterIngredientComponent } from './filter-ingredient/filter-ingredient
   exports: [ListIngredientComponent, FilterIngredientComponent],
   providers: [],
 })
-export class ShoppingListComponentsModule {}
+export class ShoppingListComponentsModule { }
