@@ -8,6 +8,8 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { MatIconModule } from '@angular/material/icon';
 import { MatButtonModule } from '@angular/material/button';
+import { CartListComponent } from './components/cart-list/cart-list.component';
+import { CartCheckComponentsModule } from './components/cart-check-component.module';
 @NgModule({
   declarations: [CartCheckComponent],
   imports: [
@@ -16,6 +18,7 @@ import { MatButtonModule } from '@angular/material/button';
     MatInputModule,
     MatIconModule,
     MatButtonModule,
+    CartCheckComponentsModule,
     RouterModule.forChild([
       {
         path: '',

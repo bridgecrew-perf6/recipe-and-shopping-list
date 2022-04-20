@@ -2,12 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { Store, Select } from '@ngxs/store';
 import { Observable } from 'rxjs';
 import {
-  AddAmountIngredient,
-  AddIngredient,
-  ChangeInputAmount,
+  ClearCart,
   ReloadState,
-  RemoveIngredient,
-  SubtractAmountIngredient,
 } from 'src/app/shared/actions/ingredient.actions';
 import { IngredientState } from 'src/app/shared/states/ingredient.state';
 
@@ -17,7 +13,6 @@ import { IngredientState } from 'src/app/shared/states/ingredient.state';
   styleUrls: ['./cart-check.component.scss'],
 })
 export class CartCheckComponent implements OnInit {
-  @Select(IngredientState.getIngredients) ingredients$!: Observable<any>;
   @Select(IngredientState.getTotalPrice) totalPrice$!: Observable<number>;
   totalCash: number = 0;
   constructor(
@@ -35,23 +30,11 @@ export class CartCheckComponent implements OnInit {
     }
   }
 
-  ngOnInit(): void {}
-
-  handleAddAmount(arg: any) {
-    this._store.dispatch(new AddAmountIngredient(arg));
+  ngOnInit(): void {
+    window.scrollTo(0, 0);
   }
 
-  handleSubtractAmount(arg: any) {
-    this._store.dispatch(new SubtractAmountIngredient(arg));
-  }
-
-  handleDeleteIngredient(arg: any) {
-    this._store.dispatch(new RemoveIngredient(arg));
-  }
-
-  handleChange(arg: any, id: number) {
-    this._store.dispatch(
-      new ChangeInputAmount({ id, amount: arg.target.value })
-    );
+  handleClearCart() {
+    this._store.dispatch(new ClearCart());
   }
 }

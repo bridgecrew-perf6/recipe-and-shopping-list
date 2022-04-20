@@ -5,12 +5,14 @@
 .btn-css {
   transform: scale(0.7);
 }
-.list-ingredient-cart {
-  overflow-y: scroll;
-  max-height: calc(100vh - 350px);
+
+img {
+  max-width: 15%;
+  height: auto;
 }
+
 @media only screen and (max-width: 780px) {
   .list-cart {
-    padding: 1rem 0.6rem;
+    padding: 1rem 0.4rem;
   }
 }

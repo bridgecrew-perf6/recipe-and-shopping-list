@@ -3,73 +3,34 @@
     <h1 class="m-0">Your cart</h1>
   </div>
 </div>
-<!-- <div *ngIf="ingredients$">
-</div> -->
-<div class="card list-cart" *ngFor="let ingredients of ingredients$ | async">
-  <div class="d-flex">
-    <img
-      [src]="ingredients.imgURL"
-      [alt]="ingredients.alt"
-      width="20%"
-      class="me-3"
-    />
-    <div class="cart-info w-100">
-      <div class="row">
-        <div class="col-9">
-          <h2>{{ ingredients.ingredientName }}</h2>
-        </div>
-        <div class="col-3">
-          <h2 class="text-end me-2">
-            {{ ingredients.price * ingredients.amount | currency }}
-          </h2>
-        </div>
-      </div>
-      <div class="row align-items-center">
-        <div class="col-9 d-flex">
-          <button
-            mat-mini-fab
-            class="btn-css"
-            type="button"
-            color="primary"
-            [disabled]="ingredients.amount < 2 ? true : false"
-            (click)="handleSubtractAmount(ingredients.id)"
-          >
-            <mat-icon>remove</mat-icon>
-          </button>
-          <input
-            type="number"
-            class="form-control"
-            style="width: 4rem"
-            (change)="handleChange($event, ingredients.id)"
-            [value]="ingredients.amount"
-          />
-          <button
-            mat-mini-fab
-            class="btn-css"
-            type="button"
-            color="primary"
-            (click)="handleAddAmount(ingredients.id)"
-          >
-            <mat-icon>add</mat-icon>
-          </button>
-        </div>
-        <div class="col-3 text-end">
-          <button
-            mat-flat-button
-            color="warn"
-            (click)="handleDeleteIngredient(ingredients.id)"
-          >
-            Delete
-          </button>
-        </div>
-      </div>
-    </div>
-  </div>
+
+<div class="list-ingredient-cart">
+  <app-cart-list></app-cart-list>
 </div>
 
 <div class="card list-cart">
   <div class="d-flex justify-content-between">
-    <h1>Total:</h1>
-    <h1>{{ totalCash | currency }}</h1>
+    <div></div>
+    <div class="text-align-right">
+      <h1>
+        <strong>
+          Total: <span>{{ totalCash | currency }}</span>
+        </strong>
+      </h1>
+    </div>
+  </div>
+  <div class="d-flex justify-content-between" *ngIf="totalCash !== 0">
+    <div></div>
+    <div class="action">
+      <button
+        mat-flat-button
+        color="warn"
+        class="me-2"
+        (click)="handleClearCart()"
+      >
+        Clear cart
+      </button>
+      <button mat-flat-button color="primary">Check out</button>
+    </div>
   </div>
 </div>

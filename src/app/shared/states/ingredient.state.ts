@@ -8,6 +8,7 @@ import {
   SubtractAmountIngredient,
   ChangeInputAmount,
   ReloadState,
+  ClearCart,
 } from '../actions/ingredient.actions';
 export class IngredientStateModel {
   ingredients!: any[];
@@ -47,7 +48,7 @@ export class IngredientState {
   ) {
     const state = getState();
     let isHaveId: boolean = false;
-    if (state.ingredients.length === 0) {
+    if (state.ingredients?.length === 0) {
       (this.allIngredientLocal = [...state.ingredients, payload]),
         patchState({
           ingredients: [...state.ingredients, payload],
@@ -186,5 +187,14 @@ export class IngredientState {
         return total + currentVal.price * currentVal.amount;
       }, 0),
     });
+  }
+
+  @Action(ClearCart)
+  clearCard({ patchState }: StateContext<IngredientStateModel>) {
+    patchState({
+      ingredients: [],
+      totalPrice: 0,
+    });
+    this.allIngredientLocal = [];
   }
 }

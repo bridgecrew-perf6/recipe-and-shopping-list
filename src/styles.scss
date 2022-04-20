@@ -6,5 +6,18 @@ body {
 }
 body {
   margin: 0;
-  font-family: Roboto, sans-serif;
+  font-family: "Poppins", Roboto, sans-serif !important;
+}
+
+::-webkit-scrollbar {
+  width: 5px;
+  height: 4px;
+}
+::-webkit-scrollbar-track {
+  border-radius: 10px;
+  background-color: rgb(176, 176, 176);
+}
+::-webkit-scrollbar-thumb {
+  border-radius: 10px;
+  background-color: #6c6c6c;
 }

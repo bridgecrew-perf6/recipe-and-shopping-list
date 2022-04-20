@@ -1,5 +1,7 @@
 img {
-  width: 15rem;
+  width: auto;
+  max-width: 10rem;
+  height: auto;
   object-fit: cover;
 }
 .list-recipe {
@@ -9,17 +11,6 @@ img {
 
 .search-recipe {
   width: 100%;
-}
-::-webkit-scrollbar {
-  width: 5px;
-}
-::-webkit-scrollbar-track {
-  border-radius: 10px;
-  background-color: rgb(176, 176, 176);
-}
-::-webkit-scrollbar-thumb {
-  border-radius: 10px;
-  background-color: #6c6c6c;
 }
 
 .card:hover {

@@ -19,14 +19,17 @@ export class RecipeComponent implements OnInit {
   isShowRecipe: boolean = false;
   isUpdateRecipe: boolean = false;
   durationInSeconds = 3;
+  isLoading!: boolean;
 
   constructor(
     private _recipeService: RecipeService,
     private _snackBar: MatSnackBar
-  ) { }
+  ) {}
 
   ngOnInit() {
+    this.isLoading = true;
     this.fetchAllRecipe();
+    window.scrollTo(0, 0);
   }
 
   /**
@@ -41,6 +44,7 @@ export class RecipeComponent implements OnInit {
         });
         this.isUpdateRecipe = false;
       }
+      this.isLoading = false;
     });
   }
 

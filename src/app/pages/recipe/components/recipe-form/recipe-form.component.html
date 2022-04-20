@@ -23,6 +23,7 @@
   <!-- Begin:: Food URL picture -->
   <mat-form-field class="example-full-width mb-3" appearance="outline">
     <mat-label>Image URL</mat-label>
+
     <input matInput placeholder="Ex. https://" formControlName="imgURL" />
     <mat-error *ngIf="imgURL?.hasError('required')">
       Image URL is <strong>required</strong>
@@ -58,11 +59,16 @@
       mat-icon-button
       color="primary"
       type="button"
+      [disabled]="!this.addRecipeForm.valid || isDuplicate"
       (click)="handleAddIngredient()"
     >
       <mat-icon>add</mat-icon>
     </button>
   </h3>
+  <p *ngIf="isDuplicate" class="alert alert-danger">
+    This ingredient already exists
+  </p>
+
   <div class="d-flex justify-content-between"></div>
   <div class="list-ingredient" formArrayName="ingredient">
     <div
@@ -77,6 +83,8 @@
           placeholder="Ex. Carrot"
           type="text"
           formControlName="name"
+          maxlength="50"
+          (ngModelChange)="this.recipeListDup.next($event)"
         />
       </mat-form-field>
       <mat-form-field appearance="outline" class="number-width">
@@ -127,7 +135,7 @@
     color="primary"
     type="submit"
     (click)="handleSubmitAddRecipe()"
-    [disabled]="!this.addRecipeForm.valid"
+    [disabled]="!this.addRecipeForm.valid || isDuplicate"
   >
     {{ isAddRecipe ? "Create" : "Save" }}
   </button>

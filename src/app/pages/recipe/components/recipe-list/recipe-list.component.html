@@ -1,6 +1,6 @@
 <div class="d-flex align-items-center">
   <div class="w-50 d-flex">
-    <h1 class="me-3 mb-3"><strong>List of recipe</strong></h1>
+    <h1 class="me-3 mb-2"><strong>List of recipe</strong></h1>
     <button
       mat-mini-fab
       color="primary"
@@ -11,14 +11,13 @@
     </button>
   </div>
   <mat-form-field class="search-recipe w-50" appearance="outline">
-    <mat-label>Recipe</mat-label>
+    <mat-label>Search recipe</mat-label>
     <input
       matInput
-      placeholder="Search recipe"
-      name="userQuestion"
+      placeholder="Ex. Carot"
       [(ngModel)]="recipeSearch"
-      id="userQuestions"
       (ngModelChange)="this.recipeListUpdate.next($event)"
+      maxlength="100"
     />
   </mat-form-field>
 </div>

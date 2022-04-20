@@ -38,7 +38,7 @@ export class FormDetailIngredientComponent implements OnInit {
           Validators.pattern(/(https?:\/\/.*\.(?:png|jpg))/),
         ],
       ],
-      price: ['', Validators.required],
+      price: ['', [Validators.required, Validators.min(1)]],
     });
   }
 

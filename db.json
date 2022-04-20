@@ -21,7 +21,7 @@
       "description": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Deleniti aliquid suscipit reiciendis provident dolo",
       "ingredient": [
         {
-          "name": "dasd",
+          "name": "string",
           "amount": 1
         }
       ]
@@ -32,16 +32,7 @@
       "imgURL": "https://freshstore.pk/Content/Products/ProductImages/22164/Homemade-Egg-Fried-Rice-250-Gram1.jpg",
       "alt": "Egg fried rice",
       "description": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Deleniti aliquid suscipit reiciendis provident dolor odit totam saepe rerum nu",
-      "ingredient": [
-        {
-          "name": "dasd",
-          "amount": 1
-        },
-        {
-          "name": "strein",
-          "amount": 1
-        }
-      ]
+      "ingredient": []
     },
     {
       "id": 5,
@@ -51,7 +42,7 @@
       "description": "abc",
       "ingredient": [
         {
-          "name": "dasd",
+          "name": "string",
           "amount": 1
         }
       ]
@@ -68,100 +59,20 @@
           "amount": 1
         }
       ]
-    },
-    {
-      "id": 7,
-      "foodName": "asd",
-      "imgURL": "https://burgerking.vn/skin/frontend/bk2/default/images/promotion/thursday.png",
-      "alt": "asd",
-      "description": "asdasd",
-      "ingredient": [
-        {
-          "name": "carot",
-          "amount": 1
-        },
-        {
-          "name": "string",
-          "amount": 2
-        },
-        {
-          "name": "string",
-          "amount": 2
-        }
-      ]
-    },
-    {
-      "id": 8,
-      "foodName": "pizza",
-      "imgURL": "https://mcdonalds.vn/uploads/2018/food/rice/mcspicy_chicken_rice.png",
-      "alt": "pizza",
-      "description": "asdasdas",
-      "ingredient": [
-        {
-          "name": "Chicken",
-          "amount": 1
-        },
-        {
-          "name": "Rice",
-          "amount": 2
-        },
-        {
-          "name": "asdas",
-          "amount": 2
-        },
-        {
-          "name": "asdasd",
-          "amount": 3
-        },
-        {
-          "name": " string1q23",
-          "amount": 1
-        }
-      ]
-    },
-    {
-      "id": 9,
-      "foodName": "adads",
-      "imgURL": "https://burgerking.vn/skin/frontend/bk2/default/images/promotion/thursday.png",
-      "alt": "adads",
-      "description": "asdasd",
-      "ingredient": [
-        {
-          "name": "asdasd",
-          "amount": 12
-        }
-      ]
-    },
-    {
-      "id": 10,
-      "foodName": "asasdasd",
-      "imgURL": "https://burgerking.vn/skin/frontend/bk2/default/images/promotion/thursday.png",
-      "alt": "asasdasd",
-      "description": "adasdsa",
-      "ingredient": [
-        {
-          "name": "asdas",
-          "amount": 1
-        },
-        {
-          "name": "asdasd",
-          "amount": 1
-        }
-      ]
     }
   ],
   "shoppingList": [
     {
       "id": 1,
       "ingredientName": "Banana",
-      "imgURL": "https://www.checkers.co.za/medias/10540421KG-20190726-Media-checkers515Wx515H?context=bWFzdGVyfGltYWdlc3wxODIzNTN8aW1hZ2UvcG5nfGltYWdlcy9oNDEvaGE3Lzg4NTk1MzA5ODU1MDIucG5nfDlmNzczMTViYzMzZWUyMzA5OTVkMDZiMWZkNGYwNjZmNGU5NjlmYmIxYTI3YjJhOTNjZDhmYzEyYjZlNzYzNzY",
+      "imgURL": "https://upload.wikimedia.org/wikipedia/commons/thumb/6/69/Banana.png/800px-Banana.png",
       "price": 2
     },
     {
       "id": 2,
       "ingredientName": "Scallion",
       "imgURL": "https://cdn.shopify.com/s/files/1/0271/6634/3237/products/scallion.png?v=1610102519",
-      "price": 1
+      "price": 2
     },
     {
       "id": 3,
@@ -179,13 +90,97 @@
       "id": 5,
       "ingredientName": "Tomato",
       "imgURL": "https://kimitecagro.com/wp-content/uploads/2019/07/plantilla_ficha-ensayo_BOMBARDIER-en-tomate-industrial-var.-H1015-yH2401-04.png",
-      "price": 3
+      "price": 1
     },
     {
       "id": 6,
       "ingredientName": "Chilli",
       "imgURL": "https://pngimg.com/uploads/chili_pepper/chili_pepper_PNG17.png",
       "price": 3
+    },
+    {
+      "id": 7,
+      "ingredientName": "Sugar",
+      "imgURL": "https://cdn.shopify.com/s/files/1/0504/5600/2723/products/organic-cane-sugar-bulk_1440x1600.png?v=1628024083",
+      "price": 2
+    },
+    {
+      "id": 8,
+      "ingredientName": "Rice",
+      "imgURL": "http://cdn.shopify.com/s/files/1/0569/8791/0331/products/Ponni-boiled.png?v=1621502759",
+      "price": 5
+    },
+    {
+      "id": 9,
+      "ingredientName": "Lime",
+      "imgURL": "https://www.forestessentialsindia.com/blog/wp-content/uploads/2020/02/Kerala-Lime-.png",
+      "price": 1
+    },
+    {
+      "id": 10,
+      "ingredientName": "Orange",
+      "imgURL": "https://www.boeschbodenspies.com/wp-content/uploads/2017/08/orange.png",
+      "price": 2
+    },
+    {
+      "id": 11,
+      "ingredientName": "Butter",
+      "imgURL": "https://freight.cargo.site/i/37cc760e6c63a6591e874bd90c14f5c22afc16b227817a37310aedd4b5a04507/free-png-butter-png-images-transparent-butter-png-850_559.png",
+      "price": 2
+    },
+    {
+      "id": 12,
+      "ingredientName": "Flour 13",
+      "imgURL": "https://thichlambanh.com/data/images/2021_09/bot-mi-baker-choice-s13-1632980190.png",
+      "price": 10
+    },
+    {
+      "id": 13,
+      "ingredientName": "Olive oil",
+      "imgURL": "https://www.bertolli.com/wp-content/uploads/2017/07/bertolli_3_32_20_no_2.png",
+      "price": 14
+    },
+    {
+      "id": 14,
+      "ingredientName": "str",
+      "imgURL": "https://www.bertolli.com/wp-content/uploads/2017/07/bertolli_3_32_20_no_2.png",
+      "price": 12
+    },
+    {
+      "id": 15,
+      "ingredientName": "string123",
+      "imgURL": "https://www.bertolli.com/wp-content/uploads/2017/07/bertolli_3_32_20_no_2.png",
+      "price": 2
+    },
+    {
+      "id": 16,
+      "ingredientName": "string34",
+      "imgURL": "https://www.bertolli.com/wp-content/uploads/2017/07/bertolli_3_32_20_no_2.png",
+      "price": 123
+    },
+    {
+      "id": 17,
+      "ingredientName": "asd",
+      "imgURL": "https://www.bertolli.com/wp-content/uploads/2017/07/bertolli_3_32_20_no_2.png",
+      "price": 234
+    },
+    {
+      "id": 18,
+      "ingredientName": "asdsad",
+      "imgURL": "https://www.bertolli.com/wp-content/uploads/2017/07/bertolli_3_32_20_no_2.png",
+      "price": 2323
+    },
+    {
+      "id": 19,
+      "ingredientName": "asdasd",
+      "imgURL": "https://www.bertolli.com/wp-content/uploads/2017/07/bertolli_3_32_20_no_2.png",
+      "price": 232
+    },
+    {
+      "id": 20,
+      "ingredientName": "Cucumber",
+      "imgURL": "https://www.lipmanfamilyfarms.com/wp-content/uploads/2020/09/Cucumber-hero@2x-1024x696.png",
+      "price": 1
     }
   ]
 }

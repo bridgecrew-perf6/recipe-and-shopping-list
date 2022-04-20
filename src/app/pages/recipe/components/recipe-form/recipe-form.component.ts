@@ -7,6 +7,7 @@ import {
   SimpleChanges,
 } from '@angular/core';
 import {
+  AbstractControl,
   FormArray,
   FormBuilder,
   FormControl,
@@ -14,12 +15,13 @@ import {
   Validators,
 } from '@angular/forms';
 import { MatDialog } from '@angular/material/dialog';
+import { debounceTime, distinctUntilChanged, Subject } from 'rxjs';
 import { RecipeList } from 'src/app/core/model/recipe.model';
 @Component({
   selector: 'dialog-content',
   templateUrl: 'dialog-content.html',
 })
-export class DialogContent { }
+export class DialogContent {}
 
 @Component({
   selector: 'app-recipe-form',
@@ -36,12 +38,33 @@ export class RecipeFormComponent implements OnInit {
   @Output() deleteRecipe = new EventEmitter<number>();
 
   addRecipeForm!: FormGroup;
+  recipeListDup = new Subject<string>();
+  isDuplicate!: boolean;
 
   constructor(private fb: FormBuilder, public dialog: MatDialog) {
     this.createForm();
+    this.recipeListDup
+      .pipe(debounceTime(400), distinctUntilChanged())
+      .subscribe(() => {
+        this.isDuplicate = false;
+        const lengthIngredient = (<FormArray>(
+          this.addRecipeForm.get('ingredient')
+        )).value.length;
+        const newInput = (<FormArray>this.addRecipeForm.get('ingredient'))
+          .value[lengthIngredient - 1];
+        for (let i = 0; i < lengthIngredient - 1; i++) {
+          if (
+            newInput.name ==
+            (<FormArray>this.addRecipeForm.get('ingredient')).value[i].name
+          ) {
+            this.isDuplicate = true;
+            console.log(this.getControls());
+          }
+        }
+      });
   }
 
-  ngOnInit(): void { }
+  ngOnInit(): void {}
 
   ngOnChanges(changes: SimpleChanges) {
     if (changes['editRecipe']) {
@@ -55,8 +78,11 @@ export class RecipeFormComponent implements OnInit {
         for (let ingredient of this.editRecipe?.ingredient) {
           (<FormArray>this.addRecipeForm?.get('ingredient')).push(
             new FormGroup({
-              name: new FormControl(ingredient.name),
-              amount: new FormControl(ingredient.amount),
+              name: new FormControl(ingredient.name, Validators.required),
+              amount: new FormControl(ingredient.amount, [
+                Validators.required,
+                Validators.min(1),
+              ]),
             })
           );
         }
@@ -116,12 +142,13 @@ export class RecipeFormComponent implements OnInit {
     (<FormArray>this.addRecipeForm.get('ingredient')).push(
       new FormGroup({
         name: new FormControl(null, Validators.required),
-        amount: new FormControl(null, Validators.required),
+        amount: new FormControl(null, [Validators.required, Validators.min(1)]),
       })
     );
   }
 
   handleDeleteIngredient(ingredientName: any) {
+    this.isDuplicate = false;
     const { name } = ingredientName.value;
     (<FormArray>this.addRecipeForm.get('ingredient')).removeAt(
       (<FormArray>this.addRecipeForm.get('ingredient')).value.findIndex(

@@ -34,6 +34,9 @@
       <mat-error *ngIf="price?.hasError('required')">
         Price is <strong>required</strong>
       </mat-error>
+      <mat-error *ngIf="price?.hasError('min')"
+        >Price must be greater than 0</mat-error
+      >
     </mat-form-field>
   </form>
 </div>

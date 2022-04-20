@@ -5,6 +5,7 @@ import { RecipeComponentsModule } from './components/recipe-components.module';
 import { CommonModule } from '@angular/common';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { MatDialogModule } from '@angular/material/dialog';
+import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 @NgModule({
   declarations: [RecipeComponent],
   imports: [
@@ -12,6 +13,8 @@ import { MatDialogModule } from '@angular/material/dialog';
     RecipeComponentsModule,
     MatSnackBarModule,
     MatDialogModule,
+    MatProgressSpinnerModule,
+
     RouterModule.forChild([
       {
         path: '',

@@ -27,3 +27,8 @@ export class ReloadState {
   static readonly type = '[ingredient] reloadState';
   constructor(public payload: any) {}
 }
+
+export class ClearCart {
+  static readonly type = '[ingredient] clearCart';
+  constructor() {}
+}

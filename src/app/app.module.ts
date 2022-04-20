@@ -10,8 +10,8 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatBadgeModule } from '@angular/material/badge';
 import { NgxsModule } from '@ngxs/store';
 import { IngredientState } from './shared/states/ingredient.state';
-import { CartCheckComponent } from './pages/cart-check/cart-check.component';
-
+import { MatButtonModule } from '@angular/material/button';
+import { MatChipsModule } from '@angular/material/chips';
 @NgModule({
   declarations: [AppComponent],
   imports: [
@@ -22,6 +22,8 @@ import { CartCheckComponent } from './pages/cart-check/cart-check.component';
     MatToolbarModule,
     MatIconModule,
     MatBadgeModule,
+    MatButtonModule,
+    MatChipsModule,
     NgxsModule.forRoot([IngredientState]),
   ],
   providers: [],
