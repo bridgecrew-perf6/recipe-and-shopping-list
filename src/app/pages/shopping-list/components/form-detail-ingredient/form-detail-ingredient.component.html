@@ -1,14 +1,25 @@
 <div mat-dialog-content>
   <h2>{{ this.data.isCreate ? "Add more ingredient" : "Edit ingredient" }}</h2>
   <form [formGroup]="addItemShoppingList">
+    <div class="alert alert-danger" *ngIf="isDuplicate">
+      This ingredient already exist
+    </div>
+    <!-- Begin:: ingredient name -->
     <mat-form-field class="w-100 mb-2" appearance="outline">
       <mat-label>Ingredient name</mat-label>
-      <input matInput placeholder="" formControlName="ingredientName" />
+      <input
+        matInput
+        placeholder=""
+        formControlName="ingredientName"
+        (ngModelChange)="this.inputIngredientName.next($event)"
+      />
       <mat-error *ngIf="ingredientName?.hasError('required')">
         Ingredient name is <strong>required</strong>
       </mat-error>
     </mat-form-field>
+    <!-- End:: ingredient name -->
 
+    <!-- Begin:: image url -->
     <mat-form-field class="w-100 mb-2" appearance="outline">
       <mat-label>Image URL</mat-label>
       <input matInput placeholder="" formControlName="imgURL" />
@@ -27,7 +38,9 @@
       "
       width="20%"
     />
+    <!-- End:: image url -->
 
+    <!-- Begin:: Price -->
     <mat-form-field class="w-100 mb-2" appearance="outline">
       <mat-label>Price</mat-label>
       <input matInput type="number" placeholder="" formControlName="price" />
@@ -38,6 +51,7 @@
         >Price must be greater than 0</mat-error
       >
     </mat-form-field>
+    <!-- End:: Price -->
   </form>
 </div>
 <div mat-dialog-actions>
@@ -64,7 +78,7 @@
             isDelete: false
           }
     "
-    [disabled]="!this.addItemShoppingList.valid"
+    [disabled]="!this.addItemShoppingList.valid || isDuplicate"
     cdkFocusInitial
   >
     {{ this.data.isCreate ? "Create" : "Save" }}

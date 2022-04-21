@@ -1,4 +1,11 @@
-import { Component, EventEmitter, Inject, OnInit, Output } from '@angular/core';
+import {
+  Component,
+  EventEmitter,
+  Inject,
+  Input,
+  OnInit,
+  Output,
+} from '@angular/core';
 import { debounceTime, distinctUntilChanged, Subject } from 'rxjs';
 import {
   MatDialog,
@@ -14,6 +21,8 @@ import { ShoppingList } from 'src/app/core/model/shoppingList.model';
   styleUrls: ['./filter-ingredient.component.scss'],
 })
 export class FilterIngredientComponent implements OnInit {
+  @Input() listIngredient!: ShoppingList[];
+
   @Output() searchIngredient = new EventEmitter<string>();
   @Output() createIngredient = new EventEmitter<ShoppingList>();
 
@@ -37,7 +46,7 @@ export class FilterIngredientComponent implements OnInit {
   handleAddItemShoppingList() {
     const dialogRef = this.dialog.open(FormDetailIngredientComponent, {
       width: '350px',
-      data: { isCreate: true },
+      data: { isCreate: true, listIngredient: this.listIngredient },
     });
 
     dialogRef.afterClosed().subscribe((result) => {

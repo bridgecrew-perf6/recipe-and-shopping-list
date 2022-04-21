@@ -1,10 +1,12 @@
-import { Component, Inject, OnInit } from '@angular/core';
+import { Component, Inject, Input, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import {
   MatDialog,
   MatDialogRef,
   MAT_DIALOG_DATA,
 } from '@angular/material/dialog';
+import { debounce, debounceTime, distinctUntilChanged, Subject } from 'rxjs';
+import { ShoppingList } from 'src/app/core/model/shoppingList.model';
 
 @Component({
   selector: 'app-form-detail-ingredient',
@@ -13,12 +15,24 @@ import {
 })
 export class FormDetailIngredientComponent implements OnInit {
   addItemShoppingList!: FormGroup;
+  inputIngredientName = new Subject<string>();
+  isDuplicate: boolean = false;
   constructor(
     public dialogRef: MatDialogRef<FormDetailIngredientComponent>,
     @Inject(MAT_DIALOG_DATA) public data: any,
     private fb: FormBuilder
   ) {
     this.createForm();
+    this.inputIngredientName
+      .pipe(debounceTime(400), distinctUntilChanged())
+      .subscribe((data: string) => {
+        this.isDuplicate = this.data?.listIngredient.some(
+          (item: ShoppingList) => {
+            return item.ingredientName.toLowerCase() == data.toLowerCase();
+          }
+        );
+        console.log(this.isDuplicate);
+      });
   }
 
   ngOnInit(): void {
