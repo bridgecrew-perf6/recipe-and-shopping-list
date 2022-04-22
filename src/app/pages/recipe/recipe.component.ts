@@ -109,4 +109,10 @@ export class RecipeComponent implements OnInit {
         this.recipeList = response;
       });
   }
+
+  handleCloseForm(arg: any) {
+    this.isDetail = true;
+    this.isShowRecipe = false;
+    this.isUpdateRecipe = true;
+  }
 }

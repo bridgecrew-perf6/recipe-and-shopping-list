@@ -26,12 +26,11 @@ export class FormDetailIngredientComponent implements OnInit {
     this.inputIngredientName
       .pipe(debounceTime(400), distinctUntilChanged())
       .subscribe((data: string) => {
-        this.isDuplicate = this.data?.listIngredient.some(
+        this.isDuplicate = (this.data?.listIngredient as ShoppingList[])?.some(
           (item: ShoppingList) => {
             return item.ingredientName.toLowerCase() == data.toLowerCase();
           }
         );
-        console.log(this.isDuplicate);
       });
   }
 

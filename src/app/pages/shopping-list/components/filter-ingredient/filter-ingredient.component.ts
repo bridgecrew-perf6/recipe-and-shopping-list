@@ -50,7 +50,7 @@ export class FilterIngredientComponent implements OnInit {
     });
 
     dialogRef.afterClosed().subscribe((result) => {
-      if (result.id === '') {
+      if (result?.id === '') {
         this.createIngredient.emit(result);
       }
     });

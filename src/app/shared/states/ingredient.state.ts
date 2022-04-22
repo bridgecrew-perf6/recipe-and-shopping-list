@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { State, Action, StateContext, Selector } from '@ngxs/store';
 import { Ingredient } from 'src/app/core/model/cart.model';
+import { ShoppingList } from 'src/app/core/model/shoppingList.model';
 import {
   AddIngredient,
   RemoveIngredient,
@@ -11,7 +12,7 @@ import {
   ClearCart,
 } from '../actions/ingredient.actions';
 export class IngredientStateModel {
-  ingredients!: any[];
+  ingredients!: ShoppingList[];
   totalPrice!: number;
 }
 

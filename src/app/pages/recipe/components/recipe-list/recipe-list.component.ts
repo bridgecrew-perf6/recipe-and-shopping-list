@@ -38,7 +38,7 @@ export class RecipeListComponent implements OnInit {
       });
   }
 
-  ngOnInit(): void { }
+  ngOnInit(): void {}
   ngOnChanges(changes: SimpleChanges) {
     this.recipeListData = this.recipeList;
     if (changes['isUpdateRecipe']?.currentValue) {
@@ -50,6 +50,8 @@ export class RecipeListComponent implements OnInit {
    * @param id number
    */
   handleSelectRecipe(id: number) {
+    document.body.clientWidth < 575 &&
+      window.scrollTo(0, document.body.scrollHeight);
     const selectRecipe = this.recipeList.filter((item: any) => {
       return item.id === id;
     });

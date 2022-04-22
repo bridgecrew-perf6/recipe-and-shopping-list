@@ -58,7 +58,6 @@ export class RecipeFormComponent implements OnInit {
             (<FormArray>this.addRecipeForm.get('ingredient')).value[i].name
           ) {
             this.isDuplicate = true;
-            console.log(this.getControls());
           }
         }
       });

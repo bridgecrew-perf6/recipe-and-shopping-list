@@ -8,3 +8,8 @@
   margin-top: 2rem;
   width: 100% !important;
 }
+
+.example-card:hover {
+  transform: scale(1.02);
+  transition: transform 300ms ease-in-out;
+}

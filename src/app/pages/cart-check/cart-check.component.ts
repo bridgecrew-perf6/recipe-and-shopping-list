@@ -23,11 +23,11 @@ export class CartCheckComponent implements OnInit {
       this.totalCash = data;
     });
     // Checking is page reload
-    if (performance.navigation.type == performance.navigation.TYPE_RELOAD) {
-      this._store.dispatch(
-        new ReloadState(this._ingredientState.allIngredientLocal)
-      );
-    }
+    // if (performance.navigation.type == performance.navigation.TYPE_RELOAD) {
+    //   this._store.dispatch(
+    //     new ReloadState(this._ingredientState.allIngredientLocal)
+    //   );
+    // }
   }
 
   ngOnInit(): void {

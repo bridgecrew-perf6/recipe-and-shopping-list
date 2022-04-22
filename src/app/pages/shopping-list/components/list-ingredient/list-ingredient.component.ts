@@ -38,15 +38,15 @@ export class ListIngredientComponent implements OnInit {
   openDialog(arg: any) {
     const dialogRef = this.dialog.open(FormDetailIngredientComponent, {
       width: '350px',
-      data: { isCreate: false, item: arg },
+      data: { isCreate: false, item: arg, listIngredient: this.listIngredient },
     });
 
     dialogRef
       .afterClosed()
       .subscribe((result: { isDelete: boolean; payload: any }) => {
-        if (result.isDelete) {
+        if (result?.isDelete) {
           this.deleteIngredient.emit(result.payload);
-        } else {
+        } else if (!result?.isDelete && result) {
           this.updateIngredient.emit(result.payload);
         }
       });

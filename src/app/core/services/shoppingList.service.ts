@@ -19,10 +19,10 @@ export class ShoppingListService {
     }),
   };
 
-  constructor(private httpClient: HttpClient, private router: Router) { }
+  constructor(private httpClient: HttpClient, private router: Router) {}
 
   /**
-   * List all recipe
+   * List all ingredient
    * @returns
    */
   public getAllShoppingList(limit: number) {
@@ -33,7 +33,7 @@ export class ShoppingListService {
   }
 
   /**
-   * List all recipe
+   * Search ingredient
    * @returns
    */
   public searchAllShoppingList(limit: number, ingredientName: string) {
@@ -44,9 +44,9 @@ export class ShoppingListService {
   }
 
   /**
- * List all recipe
- * @returns
- */
+   *  Create new ingredient
+   * @returns
+   */
   public createIngredientShoppingList(arg: any) {
     const url = `${environment.apiServer}/shoppingList`;
     return this.httpClient
@@ -55,20 +55,20 @@ export class ShoppingListService {
   }
 
   /**
-* List all recipe
-* @returns
-*/
+   * Update recipe
+   * @returns
+   */
   public updateIngredientShoppingList(arg: any) {
-    const url = `${environment.apiServer}/shoppingList/${arg.id}`;
+    const url = `${environment.apiServer}/shoppingList/${arg?.id}`;
     return this.httpClient
       .put<any>(url, arg, this.httpOptions)
       .pipe(catchError(this.handleError));
   }
 
   /**
-* List all recipe
-* @returns
-*/
+   * Delete recipe
+   * @returns
+   */
   public deleteIngredientShoppingList(id: number) {
     const url = `${environment.apiServer}/shoppingList/${id}`;
     return this.httpClient
