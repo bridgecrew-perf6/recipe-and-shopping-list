@@ -7,15 +7,15 @@ import { RecipeList } from 'src/app/core/model/recipe.model';
   styleUrls: ['./recipe-detail.component.scss'],
 })
 export class RecipeDetailComponent implements OnInit {
-  @Input() detailRecipe!: RecipeList[];
+  @Input() detailRecipe!: RecipeList;
 
   @Output() editDetailRecipe = new EventEmitter<RecipeList>();
 
-  constructor() { }
+  constructor() {}
 
-  ngOnInit(): void { }
+  ngOnInit(): void {}
 
   handleEditRecipe() {
-    this.editDetailRecipe.emit(this.detailRecipe[0]);
+    this.editDetailRecipe.emit(this.detailRecipe);
   }
 }

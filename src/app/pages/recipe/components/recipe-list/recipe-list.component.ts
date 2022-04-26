@@ -14,12 +14,15 @@ import { RecipeList } from 'src/app/core/model/recipe.model';
   templateUrl: './recipe-list.component.html',
   styleUrls: ['./recipe-list.component.scss'],
 })
-export class RecipeListComponent implements OnInit {
+export class RecipeListComponent {
   @Input() recipeList!: RecipeList[];
   @Input() isUpdateRecipe!: boolean;
 
   @Output() isAddRecipe = new EventEmitter<boolean>();
-  @Output() showDetail = new EventEmitter<object>();
+  @Output() showDetail = new EventEmitter<{
+    selectRecipe: RecipeList;
+    isDetail: true;
+  }>();
   @Output() searchRecipe = new EventEmitter<string>();
 
   recipeListData!: RecipeList[];
@@ -29,16 +32,15 @@ export class RecipeListComponent implements OnInit {
   constructor() {
     this.recipeListUpdate
       .pipe(debounceTime(400), distinctUntilChanged())
-      .subscribe((value) => {
-        if (value !== '') {
-          this.searchRecipe.emit(value);
-        } else {
+      .subscribe((value: string) => {
+        if (!value) {
           this.searchRecipe.emit('');
+        } else {
+          this.searchRecipe.emit(value);
         }
       });
   }
 
-  ngOnInit(): void {}
   ngOnChanges(changes: SimpleChanges) {
     this.recipeListData = this.recipeList;
     if (changes['isUpdateRecipe']?.currentValue) {
@@ -52,9 +54,11 @@ export class RecipeListComponent implements OnInit {
   handleSelectRecipe(id: number) {
     document.body.clientWidth < 575 &&
       window.scrollTo(0, document.body.scrollHeight);
+
     const selectRecipe = this.recipeList.filter((item: any) => {
       return item.id === id;
-    });
+    })[0];
+
     this.showDetail.emit({
       selectRecipe,
       isDetail: true,

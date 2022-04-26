@@ -10,6 +10,10 @@
         {
           "name": "string",
           "amount": 1
+        },
+        {
+          "name": "string123",
+          "amount": 2
         }
       ]
     },
@@ -163,6 +167,18 @@
       "ingredientName": "string asd",
       "imgURL": "https://www.topshallots.com/l/en/library/download/urn:uuid:68d8f5d1-c79f-45f8-978b-b3a339a28187/demi-long-ui-thumb.png",
       "price": 12
+    }
+  ],
+  "users": [
+    {
+      "id": 1,
+      "username": "admin",
+      "password": "admin"
+    },
+    {
+      "id": 2,
+      "username": "user",
+      "password": "user"
     }
   ]
 }

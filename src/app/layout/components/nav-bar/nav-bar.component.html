@@ -1,0 +1,26 @@
+<mat-toolbar color="primary" class="fixed-top">
+  <mat-toolbar-row>
+    <a mat-button class="navbar-brand" href="#">
+      <img src="../favicon.ico" alt="" width="40" height="40" />
+    </a>
+    <mat-chip-list aria-label="Fish selection">
+      <mat-chip color="primary" selected routerLink="/recipe">Recipe</mat-chip>
+      <mat-chip color="primary" selected routerLink="/shopping-list"
+        >Shopping list</mat-chip
+      >
+    </mat-chip-list>
+    <span class="example-spacer"></span>
+
+    <mat-icon type="button" class="me-2" routerLink="/login">
+      account_circle
+    </mat-icon>
+    <mat-icon
+      type="button"
+      [matBadge]="allIngredientCart"
+      matBadgeColor="warn"
+      routerLink="/cart-check"
+      mat-icon-button
+      >shopping_cart</mat-icon
+    >
+  </mat-toolbar-row>
+</mat-toolbar>

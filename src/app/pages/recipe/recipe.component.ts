@@ -12,11 +12,11 @@ import { RecipeList } from 'src/app/core/model/recipe.model';
 })
 export class RecipeComponent implements OnInit {
   recipeList: RecipeList[] = [];
-  detailRecipe!: RecipeList[];
+  detailRecipe!: RecipeList;
   editDetailRecipe!: RecipeList;
   isAddRecipe: boolean = false;
   isDetail: boolean = false;
-  isShowRecipe: boolean = false;
+  isShowRecipeForm: boolean = false;
   isUpdateRecipe: boolean = false;
   durationInSeconds = 3;
   isLoading!: boolean;
@@ -35,13 +35,14 @@ export class RecipeComponent implements OnInit {
   /**
    * Fetch all list of recipe
    */
-  fetchAllRecipe() {
+  fetchAllRecipe(): void {
     this._recipeService.getAllRecipe().subscribe((response: any) => {
       this.recipeList = response;
       if (this.isUpdateRecipe) {
+        //get new recipe when update done
         this.detailRecipe = response.filter((items: any) => {
-          return this.detailRecipe[0].id == items.id;
-        });
+          return this.detailRecipe.id == items.id;
+        })[0];
         this.isUpdateRecipe = false;
       }
       this.isLoading = false;
@@ -49,8 +50,7 @@ export class RecipeComponent implements OnInit {
   }
 
   handleAddRecipe(args: boolean) {
-    this.isAddRecipe = args; //true
-    this.isShowRecipe = args;
+    this.isAddRecipe = this.isShowRecipeForm = args; //true
     this.isDetail = false;
   }
 
@@ -67,23 +67,21 @@ export class RecipeComponent implements OnInit {
     });
   }
 
-  handleShowDetailRecipe(args: any) {
-    this.isShowRecipe = false;
+  handleShowDetailRecipe(args: { selectRecipe: RecipeList; isDetail: true }) {
+    this.isShowRecipeForm = false;
     this.isDetail = args.isDetail;
     this.detailRecipe = args.selectRecipe;
   }
 
   handleEditRecipe(args: RecipeList) {
-    this.isDetail = false;
-    this.isAddRecipe = false;
-    this.isShowRecipe = true;
+    this.isDetail = this.isAddRecipe = false;
+    this.isShowRecipeForm = true;
     this.editDetailRecipe = args;
   }
 
   handleUpdateRecipe(args: RecipeList) {
-    this.isDetail = true;
-    this.isShowRecipe = false;
-    this.isUpdateRecipe = true;
+    this.isDetail = this.isUpdateRecipe = true;
+    this.isShowRecipeForm = false;
     this._recipeService.updateRecipe(args).subscribe(() => {
       this._snackBar.open('Update recipe success', 'Close', {
         duration: this.durationInSeconds * 1000,
@@ -94,7 +92,7 @@ export class RecipeComponent implements OnInit {
 
   handleDeleteRecipe(args: number) {
     this._recipeService.deleteRecipe(args).subscribe(() => {
-      this.isShowRecipe = false;
+      this.isShowRecipeForm = false;
       this._snackBar.open('Delete recipe success', 'Close', {
         duration: this.durationInSeconds * 1000,
       });
@@ -111,8 +109,7 @@ export class RecipeComponent implements OnInit {
   }
 
   handleCloseForm(arg: any) {
-    this.isDetail = true;
-    this.isShowRecipe = false;
-    this.isUpdateRecipe = true;
+    this.isDetail = this.isUpdateRecipe = true;
+    this.isShowRecipeForm = false;
   }
 }

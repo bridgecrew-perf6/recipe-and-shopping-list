@@ -66,14 +66,15 @@ export class RecipeFormComponent implements OnInit {
   ngOnInit(): void {}
 
   ngOnChanges(changes: SimpleChanges) {
+    const isHasIngredient =
+      this.editRecipe?.ingredient?.length !== 0 &&
+      typeof this.editRecipe?.ingredient !== 'undefined';
+
     if (changes['editRecipe']) {
       this.addRecipeForm?.patchValue({
         ...this.editRecipe,
       });
-      if (
-        this.editRecipe?.ingredient?.length !== 0 &&
-        typeof this.editRecipe?.ingredient != 'undefined'
-      ) {
+      if (isHasIngredient) {
         for (let ingredient of this.editRecipe?.ingredient) {
           (<FormArray>this.addRecipeForm?.get('ingredient')).push(
             new FormGroup({
@@ -114,11 +115,13 @@ export class RecipeFormComponent implements OnInit {
     this.addRecipeForm.patchValue({
       alt: this.addRecipeForm.get('foodName')?.value,
     });
+
     if (this.isAddRecipe) {
       this.createRecipe.emit(this.addRecipeForm.value);
     } else {
       this.updateRecipe.emit(this.addRecipeForm.value);
     }
+
     this.addRecipeForm.reset();
     this.resetIngredientForm();
   }

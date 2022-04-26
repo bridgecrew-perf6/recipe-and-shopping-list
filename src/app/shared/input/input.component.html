@@ -1,0 +1,13 @@
+<mat-form-field appearance="outline" class="number-width w-100">
+  <mat-label>{{ label }}</mat-label>
+  <input
+    matInput
+    [type]="type"
+    [placeholder]="placeholder"
+    [value]="value"
+    (input)="onChange($event)"
+  />
+  <!-- <mat-error *ngIf="formField?.hasError('required')">
+    This field is <strong>required</strong>
+  </mat-error> -->
+</mat-form-field>
